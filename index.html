@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="SRC/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand todayDate" id="today-date"></a>
+            <form class="d-flex" id="change-city-form">
+              <input class="form-control me-2" id="city-input" type="search" placeholder="Enter a new city" aria-label="Search" autocomplete="off">
+              <button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+            <button class="btn btn-outline-dark" alt="Current Location" id="current-location">📍</button>
+        </div>
+      </nav>
+        <div><h1>Marietta</h1></div>
+        <div class="row">
+          <div class="col current-temp"><h2 id="current-temp">49°F</h2></div>
+          <div class="col current-status"><h2 id="current-status">🌞</h2></div>
+        </div>
+      <p class="current-details">
+        <div class="row">
+          <div class="col temp-details"><ul><li><span id="current-high">41</span>° / <span id="current-low">28</span>°</li><li>Feels like <span id="feels-like">32</span>°</li><li><button class="fahrenheit">°F</button> <button class="celsius">°C</button></li></ul></div>
+          <div class="col status-details"><ul><li><span id="description">Sunny</span></li><li>Humidity: <span id="humidity">10</span>%</li><li>Wind: <span id="wind">8</span> mph</li></ul></div>
+        </div>
+      </p>
+      <div class="row">
+        <div class="col">
+         <div class="card" style="width: 8rem;">
+            <div class="card-body tuesday-card">
+                <p class="card-text tuesday-name">Tuesday</p>
+                <h2 class="card-title tuesday-status">🌤</h2>
+                <p class="card-text tuesday-temp">52° | 28°</p>
+            </div>
+         </div>
+        </div>
+        <div class="col">
+         <div class="card" style="width: 8rem;">
+            <div class="card-body wednesday-card">
+                <p class="card-text wednesday-name">Wednesday</p>
+                <h2 class="card-title wednesday-status">🌤</h2>
+                <p class="card-text wednesday-temp">57° | 33°</p>
+            </div>
+         </div>
+        </div>
+        <div class="col">
+         <div class="card" style="width: 8rem;">
+            <div class="card-body thursday-card">
+                <p class="card-text thursday-name">Thursday</p>
+                <h2 class="card-title thursday-status">🌤</h2>
+                <p class="card-text thursday-temp">49° | 26°</p>
+            </div>
+         </div>
+        </div>
+        <div class="col">
+         <div class="card" style="width: 8rem;">
+            <div class="card-body friday-card">
+                <p class="card-text friday-name">Friday</p>
+                <h2 class="card-title friday-status">🌤</h2>
+                <p class="card-text friday-temp">43° | 21°</p>
+            </div>
+         </div>
+        </div>
+        <div class="col">
+         <div class="card" style="width: 8rem;">
+            <div class="card-body saturday-card">
+                <p class="card-text saturday-name">Saturday</p>
+                <h2 class="card-title saturday-status">🌤</h2>
+                <p class="card-text saturday-temp">50° | 30°</p>
+            </div>
+         </div>
+        </div>
+      </div>
+    <div><footer>Last updated:</footer></div>
+    </div>
+    <script src="SRC/scriptsnew.js">
+    </script>
+  </body>
+</html>

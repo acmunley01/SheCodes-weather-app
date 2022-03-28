@@ -1,0 +1,72 @@
+body {
+  margin: 50px;
+  padding: 10px 5px 15px;
+  max-width: 800px;
+  border: 1px solid black;
+  border-radius: 20px;
+  font-family: "Barlow", sans-serif;
+  background-color: #fffaf5;
+}
+form {
+  font-family: "Barlow", sans-serif;
+}
+h1 {
+  font-size: 60px;
+  text-align: center;
+  padding: 20px 0 0 0;
+}
+footer {
+  font-size: 10px;
+  margin: 5px 0 0;
+  padding: 5px 0 0;
+  text-align: right;
+}
+#current-temp,
+#current-status {
+  font-size: 50px;
+  text-align: center;
+  padding: 20px 0 0 0;
+}
+.navbar {
+  border-radius: 10px;
+  background-color: #faf0e7;
+  width: 100%;
+}
+.temp-details li {
+  list-style: none;
+  padding: 0 0 0 105px;
+}
+.status-details li {
+  list-style: none;
+  padding: 0 0 0 130px;
+}
+.fahrenheit,
+.celsius {
+  border: 1px solid rgb(138, 137, 137);
+  background-color: #faf0e7;
+  border-radius: 5px;
+  transition: all 200ms ease;
+  box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+  cursor: pointer;
+}
+.fahrenheit:hover {
+  background-color: #000;
+  color: #faf0e7;
+  border: 1px solid #faf0e7;
+}
+.celsius:hover {
+  background-color: #000;
+  color: #faf0e7;
+  border: 1px solid #faf0e7;
+}
+
+.todayDate {
+  font-size: 12pt;
+  font-weight: 600;
+}
+.card {
+  text-align: center;
+  border: 0;
+  border-radius: 10px;
+  background-color: #faf0e7;
+}
