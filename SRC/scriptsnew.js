@@ -51,7 +51,7 @@ function formatDate(date) {
   }
   let today = document.querySelector("#today-date");
   today.innerHTML = `${day}, ${month} ${currentDate}, ${year}`;
-  let updated = document.querySelector("footer");
+  let updated = document.querySelector(".last-updated");
   updated.innerHTML = `Last Updated: ${currentHour}:${currentMin} on ${numberMonth}/${currentDate}/${year}`;
 }
 
