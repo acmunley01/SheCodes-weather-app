@@ -27,11 +27,23 @@ h1 {
   padding: 5px 0 0;
   text-align: left;
 }
-#current-temp,
-#current-status {
+#current-temp {
   font-size: 50px;
   text-align: center;
   padding: 20px 0 0 0;
+  margin: 0 auto;
+}
+#current-status {
+  padding: 0;
+  font-size: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+.current-details {
+  margin: 0 auto;
+}
+#description {
+  text-transform: capitalize;
 }
 .navbar {
   border-radius: 10px;
