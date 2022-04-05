@@ -61,6 +61,10 @@ function formatDateUpdated(timestamp) {
 }
 
 function changeTemp(response) {
+  fahrenheitTemperature = response.data.main.temp;
+  fahrenheitHigh = response.data.main.temp_max;
+  fahrenheitLow = response.data.main.temp_min;
+  fahrenheitFeelsLike = response.data.main.feels_like;
   let currentTemp = Math.round(response.data.main.temp);
   let locationTemp = document.querySelector("#current-temp");
   locationTemp.innerHTML = `${currentTemp}°F`;
@@ -124,7 +128,43 @@ function changeCity(event) {
   let city = document.querySelector("#city-input").value;
   search(city);
 }
-search("Lancaster");
+
+function displayCelsius(event) {
+  event.preventDefault();
+  let celsiusTempCurrent = Math.round((fahrenheitTemperature - 32) * (5 / 9));
+  document.querySelector("#current-temp").innerHTML = `${celsiusTempCurrent}°C`;
+  let celsiusHigh = Math.round((fahrenheitHigh - 32) * (5 / 9));
+  document.querySelector("#current-high").innerHTML = celsiusHigh;
+  let celsiusLow = Math.round((fahrenheitLow - 32) * (5 / 9));
+  document.querySelector("#current-low").innerHTML = celsiusLow;
+  let celsiusFeelsLike = Math.round((fahrenheitFeelsLike - 32) * (5 / 9));
+  document.querySelector("#feels-like").innerHTML = celsiusFeelsLike;
+}
+
+function displayFahrenheit(event) {
+  event.preventDefault();
+  document.querySelector("#current-temp").innerHTML = `${Math.round(
+    fahrenheitTemperature
+  )}°F`;
+  document.querySelector("#current-high").innerHTML =
+    Math.round(fahrenheitHigh);
+  document.querySelector("#current-low").innerHTML = Math.round(fahrenheitLow);
+  document.querySelector("#feels-like").innerHTML =
+    Math.round(fahrenheitFeelsLike);
+}
+
+let fahrenheitTemperature = null;
+let fahrenheitHigh = null;
+let fahrenheitLow = null;
+let fahrenheitFeelsLike = null;
 
 let newCityForm = document.querySelector("#change-city-form");
 newCityForm.addEventListener("submit", changeCity);
+
+let celsiusButton = document.querySelector(".celsius");
+celsiusButton.addEventListener("click", displayCelsius);
+
+let fahrenheitButton = document.querySelector(".fahrenheit");
+fahrenheitButton.addEventListener("click", displayFahrenheit);
+
+search("Lancaster");
