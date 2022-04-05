@@ -1,4 +1,5 @@
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -23,6 +24,14 @@ function formatDate(date) {
     "November",
     "December",
   ];
+  let month = months[date.getMonth()];
+  let currentDate = date.getDate();
+  let year = date.getFullYear();
+  return `${day}, ${month} ${currentDate}, ${year}`;
+}
+
+function formatDateUpdated(timestamp) {
+  let date = new Date(timestamp);
   let monthNum = [
     "1",
     "2",
@@ -37,7 +46,6 @@ function formatDate(date) {
     "11",
     "12",
   ];
-  let month = months[date.getMonth()];
   let numberMonth = monthNum[date.getMonth()];
   let currentDate = date.getDate();
   let year = date.getFullYear();
@@ -49,14 +57,8 @@ function formatDate(date) {
   if (currentMin < 10) {
     currentMin = `0${currentMin}`;
   }
-  let today = document.querySelector("#today-date");
-  today.innerHTML = `${day}, ${month} ${currentDate}, ${year}`;
-  let updated = document.querySelector(".last-updated");
-  updated.innerHTML = `Last Updated: ${currentHour}:${currentMin} on ${numberMonth}/${currentDate}/${year}`;
+  return `Last Updated: ${currentHour}:${currentMin} on ${numberMonth}/${currentDate}/${year}`;
 }
-
-let now = new Date();
-formatDate(now);
 
 function changeTemp(response) {
   let currentTemp = Math.round(response.data.main.temp);
@@ -83,6 +85,10 @@ function changeTemp(response) {
   document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   );
+  let todayDate = document.querySelector("#today-date");
+  todayDate.innerHTML = formatDate(response.data.dt * 1000);
+  let lastUpdated = document.querySelector(".last-updated");
+  lastUpdated.innerHTML = formatDateUpdated(response.data.dt * 1000);
 }
 
 function showPosition(position) {
