@@ -113,14 +113,18 @@ function getCurrentCity() {
 let currentCityButton = document.querySelector("#current-location");
 currentCityButton.addEventListener("click", getCurrentCity);
 
+function search(city) {
+  let apiKey = "c9c6ee19f6a225b23ef1849cc5c67221";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(changeTemp);
+}
+
 function changeCity(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
-  let apiKey = "c9c6ee19f6a225b23ef1849cc5c67221";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-
-  axios.get(apiUrl).then(changeTemp);
+  search(city);
 }
+search("Lancaster");
 
 let newCityForm = document.querySelector("#change-city-form");
 newCityForm.addEventListener("submit", changeCity);
