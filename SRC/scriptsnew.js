@@ -60,28 +60,60 @@ function formatDateUpdated(timestamp) {
   return `Last Updated: ${currentHour}:${currentMin} on ${numberMonth}/${currentDate}/${year}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-
   let forecastHTML = `<div class = "row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
           <div class="col">
            <div class="card" style="width: 8rem;">
               <div class="card-body">
-                  <p class="card-text" id="date">${day}</p>
-                  <h2 class="card-title" id="date-status">🌤</h2>
-                  <p class="card-text"><span id="forecast-high">52°</span> | <span id="forecast-low">28°</span></p>
+                  <p class="card-text" id="date">${formatDay(
+                    forecastDay.dt
+                  )}</p>
+                  <h2 class="card-title" id="date-status"><img src = "http://openweathermap.org/img/wn/${
+                    forecastDay.weather[0].icon
+                  }@2x.png" alt="" width="60"/></h2>
+                  <p class="card-text"><span id="forecast-high">${Math.round(
+                    forecastDay.temp.max
+                  )}°</span> | <span id="forecast-low">${Math.round(
+          forecastDay.temp.min
+        )}°</span></p>
               </div>
            </div>
           </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "c9c6ee19f6a225b23ef1849cc5c67221";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function changeTemp(response) {
@@ -123,6 +155,8 @@ function changeTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function showPosition(position) {
@@ -192,4 +226,3 @@ let fahrenheitButton = document.querySelector(".fahrenheit");
 fahrenheitButton.addEventListener("click", displayFahrenheit);
 
 search("Lancaster");
-displayForecast();
