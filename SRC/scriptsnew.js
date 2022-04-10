@@ -60,6 +60,30 @@ function formatDateUpdated(timestamp) {
   return `Last Updated: ${currentHour}:${currentMin} on ${numberMonth}/${currentDate}/${year}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+  let forecastHTML = `<div class = "row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+          <div class="col">
+           <div class="card" style="width: 8rem;">
+              <div class="card-body">
+                  <p class="card-text" id="date">${day}</p>
+                  <h2 class="card-title" id="date-status">🌤</h2>
+                  <p class="card-text"><span id="forecast-high">52°</span> | <span id="forecast-low">28°</span></p>
+              </div>
+           </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function changeTemp(response) {
   fahrenheitTemperature = response.data.main.temp;
   fahrenheitHigh = response.data.main.temp_max;
@@ -114,9 +138,6 @@ function getCurrentCity() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-let currentCityButton = document.querySelector("#current-location");
-currentCityButton.addEventListener("click", getCurrentCity);
-
 function search(city) {
   let apiKey = "c9c6ee19f6a225b23ef1849cc5c67221";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -161,6 +182,9 @@ let fahrenheitFeelsLike = null;
 let newCityForm = document.querySelector("#change-city-form");
 newCityForm.addEventListener("submit", changeCity);
 
+let currentCityButton = document.querySelector("#current-location");
+currentCityButton.addEventListener("click", getCurrentCity);
+
 let celsiusButton = document.querySelector(".celsius");
 celsiusButton.addEventListener("click", displayCelsius);
 
@@ -168,3 +192,4 @@ let fahrenheitButton = document.querySelector(".fahrenheit");
 fahrenheitButton.addEventListener("click", displayFahrenheit);
 
 search("Lancaster");
+displayForecast();
